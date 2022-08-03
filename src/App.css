@@ -1,0 +1,14 @@
+.login-form{
+    background-color: #13c2c2;
+    height: 867px;
+}
+
+.a{
+background-color: white;
+transform: translateY(100%);
+
+}
+
+.login-input{
+color: red;
+}
