@@ -1,15 +1,15 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Row, Col, Space } from 'antd';
+import { Button, Checkbox, Form, Input, Row, Col, Space, Typography } from 'antd';
 
 const Login = () => {
+    const { Title } = Typography;
 
 
     return (
         <>
             <Row
                 justify='center'
-                className="login-form"
-
+                className="form-row"
             >
                 <Col
                     span={6}
@@ -21,13 +21,14 @@ const Login = () => {
                         initialValues={{
                             remember: true,
                         }}
-                        className='a'
+                        className='form'
+                        wrapperCol={{ span: 21 }}
 
                     // onFinish={onFinish}
                     // size={'small'}
 
                     >
-                        <h1 align='center' >Sign In</h1>
+                        <Title align='center' >Sign In</Title>
                         <Form.Item
                             name="username"
                             rules={[
@@ -37,6 +38,7 @@ const Login = () => {
                                 },
                             ]}
                             className="login-input"
+                            align='center'
                         >
                             <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
                         </Form.Item>
@@ -49,6 +51,7 @@ const Login = () => {
                                     message: 'Please input your Password!',
                                 },
                             ]}
+                            align='center'
                         >
                             <Input
                                 prefix={<LockOutlined className="site-form-item-icon" />}
@@ -56,17 +59,16 @@ const Login = () => {
                                 placeholder="Password"
                             />
                         </Form.Item>
-                        <Form.Item>
+                        <Form.Item wrapperCol={{ offset: 2 }}>
                             <Form.Item name="remember" valuePropName="checked" noStyle>
-                                <Space size={[0, 16]}><Checkbox>Remember me</Checkbox><Checkbox>Remember me</Checkbox></Space>
+                                <Checkbox >Remember me</Checkbox>
                             </Form.Item >
-                            <Button type="link" align='end'>Forget Password</Button>
+                            <Button type="link" >Forget Password</Button>
                         </Form.Item>
-                        <Form.Item>
-                            <Button block={true} type="primary" htmlType="submit" className="login-form-button">
+                        <Form.Item align='center' wrapperCol={{ span: 12 }} >
+                            <Button type="primary" block htmlType="submit" className="login-form-button login-btn-margin">
                                 Log in
                             </Button>
-                            <Button type="link" align='end'>Sign Up</Button>
                         </Form.Item>
                     </Form>
                 </Col>
