@@ -15,6 +15,7 @@ const Login = () => {
                     span={6}
                     sm={6}
                     xs={12}
+                    className='form-col'
                 >
                     <Form
                         name="normal_login"

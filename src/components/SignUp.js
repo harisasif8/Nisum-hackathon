@@ -7,9 +7,12 @@ import {
     Input,
     Row,
     Select,
+    Typography,
+    Space
 } from 'antd';
 import React, { useState } from 'react';
 const { Option } = Select;
+const { Title } = Typography;
 
 const formItemLayout = {
     labelCol: {
@@ -44,10 +47,22 @@ const tailFormItemLayout = {
 
 const SignUp = () => {
     const [form] = Form.useForm();
+    const [user, setUser] = useState({
+        fName: '',
+        lName: '',
+        email: '',
+        password: '',
+        phoneNumber: '',
+        gender: ''
+    });
 
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
     };
+
+    const handleChange = (event) => {
+
+    }
 
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
@@ -65,7 +80,9 @@ const SignUp = () => {
             className="form-row"
             align='center'
         >
-            <Col>
+            <Col
+                className='form-col'
+            >
                 <Form
                     {...formItemLayout}
                     form={form}
@@ -79,6 +96,54 @@ const SignUp = () => {
                     scrollToFirstError
                     wrapperCol={{ span: 12 }}
                 >
+                    <Title align='center'>Sign Up</Title>
+                    <Space
+                    >
+                        <Form.Item
+                            name="fName"
+                            // label="First Name"
+                            rules={[
+                                {
+                                    type: 'name',
+                                },
+                                {
+                                    required: true,
+                                    message: 'Please input your First Name!',
+                                },
+                            ]}
+                            wrapperCol={{ span: 21 }}
+                            align='center'
+
+                        >
+                            <Input
+                                placeholder='First Name'
+                                
+
+                            />
+                        </Form.Item>
+                        <Form.Item
+                            name="LName"
+                            // label="Last Name"
+                            rules={[
+                                {
+                                    type: 'name',
+                                    message: 'The input is not valid E-mail!',
+                                },
+                                {
+                                    required: true,
+                                    message: 'Please input your Last name!',
+                                },
+                            ]}
+                            wrapperCol={{ span: 21 }}
+                            align='center'
+
+                        >
+                            <Input
+                                placeholder='Last Name'
+
+                            />
+                        </Form.Item>
+                    </Space>
                     <Form.Item
                         name="email"
                         label="E-mail"
@@ -179,6 +244,7 @@ const SignUp = () => {
                             },
                         ]}
                         {...tailFormItemLayout}
+                      
                     >
                         <Checkbox>
                             I have read the <a href="">agreement</a>
