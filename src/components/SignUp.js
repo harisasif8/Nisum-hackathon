@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
 
     Button,
@@ -10,7 +11,8 @@ import {
     Typography,
     Space
 } from 'antd';
-import React, { useState } from 'react';
+import { getItemFromLS } from '../helper/getLSitems';
+import { axiosInstance } from '../utils/interceptor';
 const { Option } = Select;
 const { Title } = Typography;
 
@@ -35,7 +37,7 @@ const formItemLayout = {
 const tailFormItemLayout = {
     wrapperCol: {
         xs: {
-            span: 24,
+            span: 18,
             offset: 0,
         },
         sm: {
@@ -47,28 +49,65 @@ const tailFormItemLayout = {
 
 const SignUp = () => {
     const [form] = Form.useForm();
-    const [user, setUser] = useState({
-        fName: '',
-        lName: '',
-        email: '',
-        password: '',
-        phoneNumber: '',
-        gender: ''
-    });
+    const [loading, setLoading] = useState(false);
 
-    const onFinish = (values) => {
-        console.log('Received values of form: ', values);
+    const onFinish = (user) => {
+        console.log('user', user);
+
+        const newUser = {
+            email: user.email,
+            Password: user.password
+        }
+        console.log('newUser', newUser);
+
+        // const getUser = async () => {
+        //     try {
+        //         const response = await axios.get('https://dummy.restapiexample.com/api/v1/employees')
+        //         console.log(response.data);
+        //         // console.log(response.data.data.employee_name);
+
+        //     }
+        //     catch (err) {
+        //         console.log(err);
+        //     }
+        // }
+        // getUser()
+
+
+
+        // const postUser = async () => {
+        //     try {
+        //         setLoading(true);
+        //         await axiosInstance({
+        //             method: 'post',
+        //             url: 'create',
+        //             data: {
+        //                 name: user.fName,
+        //                 salary: '123123',
+        //                 age: '123'
+        //             },
+        //             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+
+        //         });
+
+        //     }
+        //     catch (err) {
+        //         console.log(err.response, '=====');
+
+        //     }
+        //     finally {
+        //         setLoading(false);
+        //     }
+        // }
+        // postUser()
+
     };
-
-    const handleChange = (event) => {
-
-    }
 
     const prefixSelector = (
         <Form.Item name="prefix" noStyle>
             <Select
                 style={{
-                    width: 70,
+                    width: 100,
                 }}
             >
                 <Option value="92">+92</Option>
@@ -89,7 +128,6 @@ const SignUp = () => {
                     name="register"
                     onFinish={onFinish}
                     initialValues={{
-                        residence: ['zhejiang', 'hangzhou', 'xihu'],
                         prefix: '92',
                     }}
                     className='form'
@@ -117,8 +155,6 @@ const SignUp = () => {
                         >
                             <Input
                                 placeholder='First Name'
-                                
-
                             />
                         </Form.Item>
                         <Form.Item
@@ -137,10 +173,10 @@ const SignUp = () => {
                             wrapperCol={{ span: 21 }}
                             align='center'
 
+
                         >
                             <Input
                                 placeholder='Last Name'
-
                             />
                         </Form.Item>
                     </Space>
@@ -244,14 +280,14 @@ const SignUp = () => {
                             },
                         ]}
                         {...tailFormItemLayout}
-                      
+
                     >
                         <Checkbox>
                             I have read the <a href="">agreement</a>
                         </Checkbox>
                     </Form.Item>
                     <Form.Item {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="submit" className='mb-3' loading={loading}>
                             Register
                         </Button>
                     </Form.Item>
