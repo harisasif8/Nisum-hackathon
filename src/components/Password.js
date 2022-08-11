@@ -4,11 +4,12 @@ import SignUpReducer, { INITIAL_STATE, SET_PASSWORD } from '../reducers/SignUpRe
 import { useNavigate } from 'react-router-dom';
 
 const Password = () => {
-    const [{ password }, dispatchSignUpUser] = useReducer(SignUpReducer, INITIAL_STATE);
+    const [{ password, name, email }, dispatchSignUpUser] = useReducer(SignUpReducer, INITIAL_STATE);
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('name', password);
+        console.log('name', name);
+        console.log('email', email);
 
         return () => {
 
@@ -37,7 +38,7 @@ const Password = () => {
                     <h1 className="text-center mb-5">Sign Up</h1>
                     <form onSubmit={(event) => nextBtn(event)} method="POST" >
                         <div className="form-group">
-                            <input type="name" className="form-control form-rounded my-email" name='password' value={password.password} onChange={(event) => handleInput(event)} 
+                            <input type="password" className="form-control form-rounded my-email" name='password' value={password.password} onChange={(event) => handleInput(event)}
                                 placeholder="Name" required />
                             <small id="checkLoginUsername" className="text-danger"></small>
                         </div>

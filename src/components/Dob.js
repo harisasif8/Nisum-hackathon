@@ -37,7 +37,7 @@ const Dob = () => {
                     <h1 className="text-center mb-5">Sign Up</h1>
                     <form onSubmit={(event) => nextBtn(event)} method="POST" >
                         <div className="form-group">
-                            <input type="name" className="form-control form-rounded my-email" name='dob' value={dob.dob} onChange={(event) => handleInput(event)}
+                            <input type="text" className="form-control form-rounded my-email" name='dob' value={dob.dob} onChange={(event) => handleInput(event)}
                                 placeholder="Name" required />
                             <small id="checkLoginUsername" className="text-danger"></small>
                         </div>

@@ -45,9 +45,7 @@ const Email = () => {
                             <small id="checkLoginUsername" className="text-danger"></small>
                         </div>
                         <div className="my-3 d-flex justify-content-center">
-                            <Link to={'/name'}>
                                 <button type="submit" id="loginSubmitBtn" className="btn btn-danger btn-center ">Next</button>
-                            </Link>
                         </div>
                     </form>
                 </div>
