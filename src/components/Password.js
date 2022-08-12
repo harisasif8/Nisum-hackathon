@@ -8,8 +8,8 @@ const Password = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('name', name);
-        console.log('email', email);
+        // console.log('name', name);
+        // console.log('email', email);
 
         return () => {
 

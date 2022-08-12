@@ -8,7 +8,7 @@ const Dob = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('name', dob);
+        // console.log('name', dob);
 
         return () => {
 

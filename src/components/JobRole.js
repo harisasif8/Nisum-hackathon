@@ -8,7 +8,7 @@ const Jobrole = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        console.log('name', jobRole);
+        // console.log('name', jobRole);
 
         return () => {
 
