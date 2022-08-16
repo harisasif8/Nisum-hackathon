@@ -1,14 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getItemFromLS } from '../helper/getLSitems';
 
 export const USER = 'user';
 
-
 const Form = () => {
-    const userFromLs = getItemFromLS(USER) || '[]';
-    const parsedUserFromLS = JSON.parse(userFromLs);
-
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -96,7 +91,15 @@ const Form = () => {
                                 <form>
                                     <div className="form-group">
                                         <label>Job Role</label>
-                                        <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='jobRole' value={formData.jobRole} placeholder="Enter Job role" required />
+                                        <div className="form-group ">
+                                            <select className="form-control form-control-lg" onChange={(event) => handleChange(event)} name='jobRole' value={formData.jobRole} id="exampleFormControlSelect1">
+                                                <option>Front End</option>
+                                                <option>Back End</option>
+                                                <option>Software Engineer</option>
+                                                <option>Testing Engineers</option>
+                                                <option>Full-Stack Engineer</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div className='text-center'>
                                         <button type="button" onClick={prevPage} className="btn btn-danger mx-3">Previous</button>
