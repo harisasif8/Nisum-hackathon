@@ -39,12 +39,15 @@ const Form = () => {
                     <div className="container">
                         <div className="row mt-5">
                             <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <h2 className='text-center'>Sign Up</h2>
                                 <form>
                                     <div className="form-group">
-                                        <label htmlFor="exampleInputEmail1">Full name</label>
-                                        <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='name' value={formData.name} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Name" required />
+                                        <label>Full name</label>
+                                        <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='name' value={formData.name} placeholder="Enter Your Name" required />
                                     </div>
-                                    <button type="button" onClick={nextPage} className="btn btn-danger">Next</button>
+                                    <div className='text-center'>
+                                        <button type="button" onClick={nextPage} className="btn btn-danger mx-3 ">Next</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -57,6 +60,7 @@ const Form = () => {
                     <div className="container">
                         <div className="row mt-5">
                             <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <h2 className='text-center'>Sign Up</h2>
                                 <form>
                                     <div className="form-group">
                                         <label htmlFor="exampleInputEmail1">Email address</label>
@@ -79,9 +83,10 @@ const Form = () => {
                     <div className="container">
                         <div className="row mt-5">
                             <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <h2 className='text-center'>Sign Up</h2>
                                 <form>
                                     <div className="form-group">
-                                        <label htmlFor="exampleInputEmail1">Job Role</label>
+                                        <label>Job Role</label>
                                         <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='jobRole' value={formData.jobRole} placeholder="Enter Job role" required />
                                     </div>
                                     <div className='text-center'>
@@ -100,9 +105,10 @@ const Form = () => {
                     <div className="container">
                         <div className="row mt-5">
                             <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <h2 className='text-center'>Sign Up</h2>
                                 <form>
                                     <div className="form-group">
-                                        <label htmlFor="exampleInputEmail1">Date of Birth</label>
+                                        <label>Date of Birth</label>
                                         <input type="date" className="form-control" onChange={(event) => handleChange(event)} name='dob' value={formData.dob} placeholder="Date of Birth" required />
                                     </div>
                                     <div className='text-center'>
@@ -121,9 +127,10 @@ const Form = () => {
                     <div className="container">
                         <div className="row mt-5">
                             <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <h2 className='text-center'>Sign Up</h2>
                                 <form>
                                     <div className="form-group">
-                                        <label htmlFor="exampleInputEmail1">Password</label>
+                                        <label>Password</label>
                                         <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='password' value={formData.password} placeholder="Enter your password" required />
                                     </div>
                                     <div className='text-center'>
