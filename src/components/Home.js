@@ -1,8 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { JobContext } from '../contexts/JobContext';
+import { getItemFromLS } from '../helper/getLSitems';
 import { axiosInstance } from '../utils/interceptor';
+import { USER } from './Form';
 
 const Home = () => {
+    const userFromLs = getItemFromLS(USER) || '[]';
+    const parsedUserFromLS = JSON.parse(userFromLs);
     const [{ ids }] = useContext(JobContext)
     const [jobData, setJobData] = useState({
         data: []
@@ -58,11 +62,17 @@ const Home = () => {
                     }
                     const { day: postDay, month: postMonth, year: postYear } = newDate;
                     const [companyTitle, ...hiringDescription] = onlyTitle;
+                    const { jobRole: role } = parsedUserFromLS;
+                    const jobType = role.toLowerCase();
+                    const isImportant = hiringDescription.find((desc) => desc.toLowerCase().includes(jobType));
                     return (
                         <div className="col-lg-4 my-2" key={jobId}>
-                            <div className="card text-center" >
-                                <div className="card-body height">
-                                    <h5 className="card-title">{`${companyTitle})`}</h5>
+                            <div className="card text-center height" >
+                                <div className='star'>
+                                    {isImportant ? <span className="glyphicon glyphicon-star"></span> : null}
+                                </div>
+                                <div className="card-body ">
+                                    <h4 className="card-title">{`${companyTitle})`}</h4>
                                     <p className="card-text my-5">{hiringDescription}.</p>
                                     <p className="card-text">{`${postMonth}/${postDay}/${postYear}`}</p>
                                 </div>

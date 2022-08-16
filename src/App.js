@@ -6,7 +6,6 @@ import { UserProvider } from './contexts/UserContext';
 import Home from './components/Home';
 import { JobProvider } from './contexts/JobContext';
 import Form from './components/Form';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 

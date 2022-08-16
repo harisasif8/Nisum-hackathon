@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getItemFromLS } from '../helper/getLSitems';
+
+export const USER = 'user';
+
 
 const Form = () => {
+    const userFromLs = getItemFromLS(USER) || '[]';
+    const parsedUserFromLS = JSON.parse(userFromLs);
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -26,6 +33,8 @@ const Form = () => {
 
     const submitData = () => {
         setPage(prevCount => prevCount + 1);
+        const userJson = JSON.stringify(formData)
+        localStorage.setItem(USER, userJson)
     }
 
     const goToWebsite = () => {
@@ -131,7 +140,7 @@ const Form = () => {
                                 <form>
                                     <div className="form-group">
                                         <label>Password</label>
-                                        <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='password' value={formData.password} placeholder="Enter your password" required />
+                                        <input type="password" className="form-control" onChange={(event) => handleChange(event)} name='password' value={formData.password} placeholder="Enter your password" required />
                                     </div>
                                     <div className='text-center'>
                                         <button type="button" onClick={prevPage} className="btn btn-danger mx-3">Previous</button>

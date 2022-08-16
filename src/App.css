@@ -19,3 +19,9 @@ margin-top: 10%;
 .height{
     height: 250px;
 }
+
+.star{
+    font-size: 30px;
+    color: yellow;
+    height: 30px;
+}
