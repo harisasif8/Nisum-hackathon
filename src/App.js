@@ -6,7 +6,6 @@ import { UserProvider } from './contexts/UserContext';
 import Home from './components/Home';
 import { JobProvider } from './contexts/JobContext';
 import Form from './components/Form';
-import FormResult from './components/FormResult';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -21,7 +20,6 @@ function App() {
             <Routes>
               <Route exact path={'home'} element={<Home />} />
               <Route exact path={'form'} element={<Form />} />
-              <Route exact path={'result'} element={<FormResult />} />
             </Routes>
           </JobProvider>
         </Router>

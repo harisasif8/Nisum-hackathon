@@ -1,9 +1,5 @@
-import { Alert } from 'bootstrap';
 import { useState } from 'react';
-import FormResult from './FormResult';
 import { useNavigate } from 'react-router-dom';
-import Name from './Name';
-import Email from './Email';
 
 const Form = () => {
     const [formData, setFormData] = useState({
@@ -13,9 +9,8 @@ const Form = () => {
         jobRole: '',
         dob: ''
     })
-    const navigate = useNavigate()
-    console.log('formdata', formData);
     const [page, setPage] = useState(0);
+    const navigate = useNavigate();
 
     const prevPage = () => {
         setPage(prevCount => prevCount - 1);
@@ -30,7 +25,11 @@ const Form = () => {
     }
 
     const submitData = () => {
-        navigate('/result')
+        setPage(prevCount => prevCount + 1);
+    }
+
+    const goToWebsite = () => {
+        navigate('/home')
     }
 
     switch (page) {
@@ -38,9 +37,15 @@ const Form = () => {
             return (
                 <div>
                     <div className="container">
-                        <div className="row">
-                            <div className="col">
-                                <Name nextPage={nextPage} handleInputData={handleChange} values={formData} />
+                        <div className="row mt-5">
+                            <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Full name</label>
+                                        <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='name' value={formData.name} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Name" required />
+                                    </div>
+                                    <button type="button" onClick={nextPage} className="btn btn-danger">Next</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -50,9 +55,19 @@ const Form = () => {
             return (
                 <div>
                     <div className="container">
-                        <div className="row">
-                            <div className="col">
-                                <Email prevPage={prevPage} nextPage={nextPage} handleInputData={handleChange} values={formData} />
+                        <div className="row mt-5">
+                            <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Email address</label>
+                                        <input type="email" className="form-control" onChange={(event) => handleChange(event)} name='email' value={formData.email} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required />
+                                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
+                                    </div>
+                                    <div className='text-center'>
+                                        <button type="button" onClick={prevPage} className="btn btn-danger mx-3">Previous</button>
+                                        <button type="button" onClick={nextPage} className="btn btn-danger mx-3">Next</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -62,10 +77,18 @@ const Form = () => {
             return (
                 <div>
                     <div className="container">
-                        <div className="row">
-                            <div className="col">
-                                <input placeholder='jobRole' type="text" name="jobRole" value={formData.jobRole} id="" onChange={(event) => handleChange(event)} />
-                                <button onClick={nextPage}>Next</button>
+                        <div className="row mt-5">
+                            <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Job Role</label>
+                                        <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='jobRole' value={formData.jobRole} placeholder="Enter Job role" required />
+                                    </div>
+                                    <div className='text-center'>
+                                        <button type="button" onClick={prevPage} className="btn btn-danger mx-3">Previous</button>
+                                        <button type="button" onClick={nextPage} className="btn btn-danger mx-3">Next</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -75,40 +98,64 @@ const Form = () => {
             return (
                 <div>
                     <div className="container">
-                        <div className="row">
-                            <div className="col">
-                                <input placeholder='Date of Birth' type="text" name="dob" value={formData.dob} id="" onChange={(event) => handleChange(event)} />
-                                <button onClick={nextPage}>Next</button>
-                            </div>
-                        </div>
-                    </div>
-                </div >
-            );
-        case 4:
-            return (
-                <div>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col">
-                                <input placeholder='Password' type="text" name="dob" value={formData.dob} id="" onChange={(event) => handleChange(event)} />
-                                <button onClick={prevPage}>Previous</button>
-                                <button onClick={submitData} >Submit</button>
+                        <div className="row mt-5">
+                            <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Date of Birth</label>
+                                        <input type="date" className="form-control" onChange={(event) => handleChange(event)} name='dob' value={formData.dob} placeholder="Date of Birth" required />
+                                    </div>
+                                    <div className='text-center'>
+                                        <button type="button" onClick={prevPage} className="btn btn-danger mx-3">Previous</button>
+                                        <button type="button" onClick={nextPage} className="btn btn-danger mx-3">Next</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             );
-
+        case 4:
+            return (
+                <div>
+                    <div className="container">
+                        <div className="row mt-5">
+                            <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <form>
+                                    <div className="form-group">
+                                        <label htmlFor="exampleInputEmail1">Password</label>
+                                        <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='password' value={formData.password} placeholder="Enter your password" required />
+                                    </div>
+                                    <div className='text-center'>
+                                        <button type="button" onClick={prevPage} className="btn btn-danger mx-3">Previous</button>
+                                        <button type="button" onClick={submitData} className="btn btn-danger mx-3">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        case 5:
+            return (
+                <div>
+                    <div className="container">
+                        <div className="row mt-5">
+                            <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                                <h6>{`Name : ${formData.name}`}</h6>
+                                <h6>{`Email : ${formData.email}`}</h6>
+                                <h6>{`Job Role : ${formData.jobRole}`}</h6>
+                                <h6>{`Date of Birth : ${formData.dob}`}</h6>
+                                <h6>{`Password : ${formData.password}`}</h6>
+                                <button type="button" onClick={goToWebsite} className="btn btn-danger ml-5 mt-5">Continue To Website</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
         default:
             break;
     }
-
-    return (
-        <div>
-            {/* <input type="text" name="name" value={formData.name} id="" onChange={(event) => handleChange(event)} /> */}
-            {/* <input type="text" name="email" value={formData.email} id="" onChange={(event) => handleChange(event)} /> */}
-        </div>
-    );
 }
 
 export default Form;

@@ -17,7 +17,7 @@ const Home = () => {
 
     useEffect(() => {
         const initialIds = ids.slice(startCount, endCount)
-        const jobInfo = initialIds.map((id) => { 
+        const jobInfo = initialIds.map((id) => {
             const promise = new Promise((resolve, reject) => {
                 axiosInstance({
                     url: `/item/${id}.json`,
