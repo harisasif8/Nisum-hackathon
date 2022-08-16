@@ -25,3 +25,8 @@
     color: yellow;
     height: 30px;
 }
+
+.card-post {
+    cursor: pointer;
+    color: black;
+}

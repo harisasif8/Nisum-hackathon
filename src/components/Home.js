@@ -52,8 +52,9 @@ const Home = () => {
             <h1 className='text-center'>Home Page</h1>
             <div className="row ">
                 {jobData.data.map((data) => {
-                    const { id: jobId, title: jobTitle, time: advTime } = data.value;
-                    const onlyTitle = jobTitle.split(')');
+                    const { id: jobId, title: jobTitle, time: advTime, url: postUrl } = data.value;
+                    const wrongUrl = `https://news.ycombinator.com/item?id=${jobId}`
+                    const titleWithDesc = jobTitle.split(')');
                     const postDate = new Date(advTime);
                     const newDate = {
                         day: postDate.getUTCDate(),
@@ -61,21 +62,24 @@ const Home = () => {
                         year: postDate.getFullYear()
                     }
                     const { day: postDay, month: postMonth, year: postYear } = newDate;
-                    const [companyTitle, ...hiringDescription] = onlyTitle;
+                    const [companyTitle, ...hiringDescription] = titleWithDesc;
                     const { jobRole: role } = parsedUserFromLS;
                     const jobType = role.toLowerCase();
                     const isImportant = hiringDescription.find((desc) => desc.toLowerCase().includes(jobType));
+
                     return (
                         <div className="col-lg-4 my-2" key={jobId}>
-                            <div className="card text-center height" >
+                            <div className="card text-center height card-post" >
                                 <div className='star'>
                                     {isImportant ? <span className="glyphicon glyphicon-star"></span> : null}
                                 </div>
-                                <div className="card-body ">
-                                    <h4 className="card-title">{`${companyTitle})`}</h4>
-                                    <p className="card-text my-5">{hiringDescription}.</p>
-                                    <p className="card-text">{`${postMonth}/${postDay}/${postYear}`}</p>
-                                </div>
+                                <a href={postUrl ? postUrl : wrongUrl } target='_blank' className='text-dark'>
+                                    <div className="card-body "> 
+                                        <h4 className="card-title">{`${companyTitle})`}</h4>
+                                        <p className="card-text my-5">{hiringDescription}.</p>
+                                        <p className="card-text">{`${postMonth}/${postDay}/${postYear}`}</p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     );
