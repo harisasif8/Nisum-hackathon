@@ -42,7 +42,7 @@ const Form = () => {
                 <div>
                     <div className="container">
                         <div className="row mt-5">
-                            <div className="col-lg-5 border p-5 mx-auto my-auto ">
+                            <div className="col-lg-5 border p-5 mx-auto ">
                                 <h2 className='text-center'>Sign Up</h2>
                                 <form>
                                     <div className="form-group">

@@ -3,11 +3,12 @@ import { JobContext } from '../contexts/JobContext';
 import { getItemFromLS } from '../helper/getLSitems';
 import { axiosInstance } from '../utils/interceptor';
 import { USER } from './Form';
+import { ShimmerSimpleGallery } from "react-shimmer-effects";
 
 const Home = () => {
     const userFromLs = getItemFromLS(USER) || '[]';
     const parsedUserFromLS = JSON.parse(userFromLs);
-    const [{ ids }] = useContext(JobContext)
+    const [{ ids, isIdLoading }] = useContext(JobContext)
     const [jobData, setJobData] = useState({
         data: []
     });
@@ -48,10 +49,10 @@ const Home = () => {
     }, [ids, endCount]);
 
     return (
-        <div className="container ">
+        <div className="container-fluid bg-light">
             <h1 className='text-center'>Home Page</h1>
-            <div className="row ">
-                {jobData.data.map((data) => {
+            <div className="row mx-auto px-5">
+                {isIdLoading ? <ShimmerSimpleGallery card imageHeight={250} /> : jobData.data.map((data) => {
                     const { id: jobId, title: jobTitle, time: advTime, url: postUrl } = data.value;
                     const wrongUrl = `https://news.ycombinator.com/item?id=${jobId}`
                     const titleWithDesc = jobTitle.split(')');
@@ -68,14 +69,14 @@ const Home = () => {
                     const isImportant = hiringDescription.find((desc) => desc.toLowerCase().includes(jobType));
 
                     return (
-                        <div className="col-lg-4 my-2" key={jobId}>
+                        <div className="col-lg-4 my-3" key={jobId}>
                             <div className="card text-center height card-post" >
                                 <div className='star'>
                                     {isImportant ? <span className="glyphicon glyphicon-star"></span> : null}
                                 </div>
-                                <a href={postUrl ? postUrl : wrongUrl } target='_blank' className='text-dark'>
-                                    <div className="card-body "> 
-                                        <h4 className="card-title">{`${companyTitle})`}</h4>
+                                <a href={postUrl ? postUrl : wrongUrl} target='_blank' className='text-dark'>
+                                    <div className="card-body">
+                                        <h3 className="card-title">{`${companyTitle})`}</h3>
                                         <p className="card-text my-5">{hiringDescription}.</p>
                                         <p className="card-text">{`${postMonth}/${postDay}/${postYear}`}</p>
                                     </div>

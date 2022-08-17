@@ -18,7 +18,7 @@ function App() {
           <JobProvider>
             <Routes>
               <Route exact path={'home'} element={<Home />} />
-              <Route exact path={'form'} element={<Form />} />
+              <Route exact path={'/'} element={<Form />} />
             </Routes>
           </JobProvider>
         </Router>

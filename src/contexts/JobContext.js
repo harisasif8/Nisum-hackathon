@@ -6,7 +6,8 @@ export const JobContext = createContext();
 export const JobProvider = props => {
 
     const [postId, setPostId] = useState({
-        ids: []
+        ids: [],
+        isIdLoading: true,
     })
 
     useEffect(() => {
@@ -16,10 +17,10 @@ export const JobProvider = props => {
                     url: `jobstories.json`,
                     method: 'GET',
                 });
-                setPostId({ ids: response?.data || [] })
+                setPostId({ isIdLoading: false, ids: response?.data || [] })
             } catch (err) {
                 console.log(err);
-                setPostId({ ...postId })
+                setPostId({ ...postId, isIdLoading: false })
             }
         };
         getId();
