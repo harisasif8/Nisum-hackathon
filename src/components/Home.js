@@ -8,7 +8,8 @@ import { ShimmerSimpleGallery } from "react-shimmer-effects";
 const Home = () => {
     const userFromLs = getItemFromLS(USER) || '[]';
     const parsedUserFromLS = JSON.parse(userFromLs);
-    const [{ ids, isIdLoading }] = useContext(JobContext)
+    const [{ ids }] = useContext(JobContext)
+    const [isLoading, setIsLoading] = useState(true)
     const [jobData, setJobData] = useState({
         data: []
     });
@@ -42,6 +43,7 @@ const Home = () => {
             .then((result) => {
                 const fulFilledResponses = result.filter(({ status }) => status === 'fulfilled')
                 setJobData({ data: [...jobData.data, ...fulFilledResponses] })
+                setIsLoading(false)
             })
             .catch((err) => {
                 console.log('err', err);
@@ -51,8 +53,8 @@ const Home = () => {
     return (
         <div className="container-fluid bg-light">
             <h1 className='text-center'>Home Page</h1>
-            <div className="row mx-auto px-5">
-                {isIdLoading ? <ShimmerSimpleGallery card imageHeight={250} /> : jobData.data.map((data) => {
+            < div className="row mx-auto px-5">
+                {isLoading ? <ShimmerSimpleGallery className='mt-3' card imageHeight={250} /> : jobData.data.map((data) => {
                     const { id: jobId, title: jobTitle, time: advTime, url: postUrl } = data.value;
                     const wrongUrl = `https://news.ycombinator.com/item?id=${jobId}`
                     const titleWithDesc = jobTitle.split(')');
@@ -88,7 +90,7 @@ const Home = () => {
                 }
                 <button type="button" className="btn btn-primary mx-auto my-5 " onClick={loadMore}>Load more</button>
             </div>
-        </div>
+        </div >
     );
 }
 

@@ -11,6 +11,7 @@ const Form = () => {
         jobRole: '',
         dob: ''
     })
+
     const [page, setPage] = useState(0);
     const navigate = useNavigate();
 
