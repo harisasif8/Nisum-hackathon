@@ -37,6 +37,8 @@ const Form = () => {
         navigate('/home')
     }
 
+
+
     switch (page) {
         case 0:
             return (
@@ -51,7 +53,7 @@ const Form = () => {
                                         <input type="text" className="form-control" onChange={(event) => handleChange(event)} name='name' value={formData.name} placeholder="Enter Your Name" required />
                                     </div>
                                     <div className='text-center'>
-                                        <button type="button" onClick={nextPage} className="btn btn-danger mx-3 ">Next</button>
+                                        <button type="button" data-testid='nextPage' onClick={nextPage} className="btn btn-danger mx-3 ">Next</button>
                                     </div>
                                 </form>
                             </div>

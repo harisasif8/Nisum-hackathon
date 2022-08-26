@@ -13,8 +13,8 @@ const Home = () => {
     const [jobData, setJobData] = useState({
         data: []
     });
-    const [startCount, setStartCount] = useState(0)
-    const [endCount, setEndCount] = useState(9)
+    const [startCount, setStartCount] = useState(0);
+    const [endCount, setEndCount] = useState(9);
 
     const loadMore = () => {
         setStartCount(prevCount => prevCount = endCount)
